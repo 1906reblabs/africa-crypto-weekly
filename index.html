@@ -38,7 +38,6 @@
     overflow-x: hidden;
   }
 
-  /* GRAIN */
   body::before {
     content: '';
     position: fixed; inset: 0;
@@ -67,12 +66,7 @@
     text-decoration: none;
   }
   .nav-brand span { color: var(--sky); font-style: italic; }
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    align-items: center;
-    list-style: none;
-  }
+  .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
   .nav-links a {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.62rem;
@@ -84,7 +78,6 @@
   }
   .nav-links a:hover, .nav-links a.active { color: var(--steel); }
 
-  /* NAV DROPDOWN */
   .nav-dropdown { position: relative; }
   .nav-dropdown-toggle {
     font-family: 'IBM Plex Mono', monospace;
@@ -92,12 +85,11 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--mid);
-    text-decoration: none;
-    transition: color 0.2s;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 0.35rem;
+    transition: color 0.2s;
   }
   .nav-dropdown-toggle::after { content: '▾'; font-size: 0.55rem; opacity: 0.6; }
   .nav-dropdown:hover .nav-dropdown-toggle { color: var(--steel); }
@@ -137,7 +129,7 @@
     color: var(--sky) !important;
     border: 1px solid rgba(172,212,241,0.35);
     padding: 0.3rem 0.9rem;
-    transition: background 0.2s, color 0.2s !important;
+    transition: background 0.2s !important;
   }
   .nav-cta:hover { background: rgba(172,212,241,0.1) !important; }
 
@@ -193,13 +185,7 @@
     align-items: center;
     gap: 0.8rem;
   }
-  .hero-kicker::before {
-    content: '';
-    display: block;
-    width: 28px; height: 1px;
-    background: var(--steel);
-    flex-shrink: 0;
-  }
+  .hero-kicker::before { content: ''; display: block; width: 28px; height: 1px; background: var(--steel); flex-shrink: 0; }
   .hero h1 {
     font-family: 'Playfair Display', serif;
     font-weight: 900;
@@ -210,13 +196,7 @@
     margin-bottom: 1.5rem;
   }
   .hero h1 em { color: var(--sky); font-style: italic; }
-  .hero-tagline {
-    font-size: 1.05rem;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.7;
-    max-width: 420px;
-    margin-bottom: 2.5rem;
-  }
+  .hero-tagline { font-size: 1.05rem; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 420px; margin-bottom: 2.5rem; }
   .hero-cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
 
   .btn-primary {
@@ -251,41 +231,14 @@
   }
   .btn-secondary:hover { border-color: var(--steel); color: var(--sky); transform: translateY(-1px); }
 
-  /* Hero right */
   .hero-stats { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3rem; }
-  .hero-stat-row {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border);
-  }
+  .hero-stat-row { display: flex; align-items: baseline; gap: 1rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
   .hero-stat-row:last-child { border-bottom: none; padding-bottom: 0; }
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-weight: 900;
-    font-size: 2.8rem;
-    line-height: 1;
-    color: var(--white);
-    min-width: 90px;
-  }
+  .stat-num { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2.8rem; line-height: 1; color: var(--white); min-width: 90px; }
   .stat-num em { color: var(--sky); font-style: normal; font-size: 1.4rem; }
   .stat-desc { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.55; max-width: 200px; }
-  .hero-thesis {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--steel);
-    padding: 1.5rem;
-  }
-  .thesis-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--steel);
-    margin-bottom: 0.8rem;
-    display: block;
-  }
+  .hero-thesis { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--steel); padding: 1.5rem; }
+  .thesis-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--steel); margin-bottom: 0.8rem; display: block; }
   .thesis-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--sky); line-height: 1.55; }
 
   /* TICKER */
@@ -297,7 +250,6 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    position: relative;
   }
   .ticker-label {
     font-family: 'IBM Plex Mono', monospace;
@@ -316,36 +268,24 @@
   }
   .ticker-track {
     display: flex;
-    animation: tickerScroll 45s linear infinite;
+    animation: tickerScroll 50s linear infinite;
     white-space: nowrap;
     padding-left: 2rem;
   }
   .ticker-track:hover { animation-play-state: paused; }
-  @keyframes tickerScroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-  .ticker-item {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    color: rgba(255,255,255,0.5);
-    padding: 0 2.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
+  @keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .ticker-item { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); padding: 0 2.5rem; display: flex; align-items: center; gap: 0.5rem; }
   .ticker-item .ti-label { color: var(--steel); }
   .ticker-item .ti-val { color: rgba(255,255,255,0.75); }
   .ticker-up { color: #4fc98a; }
   .ticker-down { color: #e05c5c; }
   .ticker-alert { color: #e05c5c; font-weight: 500; }
+  .ticker-gold { color: var(--accent-gold); }
   .ticker-sep { color: var(--border-strong); margin: 0 0.5rem; }
 
   /* CONTAINER */
   .container { max-width: 1140px; margin: 0 auto; padding: 0 3rem; }
 
-  /* SECTION HEADS */
   .section-eyebrow {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.6rem;
@@ -358,204 +298,64 @@
     margin-bottom: 1.2rem;
   }
   .section-eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 80px; }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    color: var(--white);
-    margin-bottom: 0.5rem;
-  }
+  .section-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--white); margin-bottom: 0.5rem; }
   .section-title em { color: var(--sky); font-style: italic; }
   .section-sub { font-size: 0.95rem; color: rgba(255,255,255,0.45); margin-bottom: 3rem; max-width: 480px; }
 
   /* FEATURED ISSUE */
   .featured-issue { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-  .featured-card {
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 3rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
+  .featured-card { display: grid; grid-template-columns: 1fr 380px; gap: 3rem; background: var(--surface); border: 1px solid var(--border); overflow: hidden; transition: border-color 0.2s; }
   .featured-card:hover { border-color: var(--steel); }
   .featured-body { padding: 3rem; }
   .featured-meta { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; align-items: center; flex-wrap: wrap; }
-  .featured-badge {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    background: var(--steel);
-    color: var(--bg);
-    padding: 0.2rem 0.6rem;
-  }
-  .featured-badge-alert {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    background: rgba(224,92,92,0.15);
-    color: #e05c5c;
-    border: 1px solid rgba(224,92,92,0.3);
-    padding: 0.2rem 0.6rem;
-  }
+  .featured-badge { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; background: var(--steel); color: var(--bg); padding: 0.2rem 0.6rem; }
+  .featured-badge-green { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; background: rgba(79,201,138,0.15); color: #4fc98a; border: 1px solid rgba(79,201,138,0.3); padding: 0.2rem 0.6rem; }
+  .featured-badge-alert { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; background: rgba(224,92,92,0.15); color: #e05c5c; border: 1px solid rgba(224,92,92,0.3); padding: 0.2rem 0.6rem; }
   .featured-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; color: var(--mid); }
   .featured-vol  { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; color: var(--mid); }
-  .featured-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 2rem;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    color: var(--white);
-    margin-bottom: 1rem;
-    text-decoration: none;
-    display: block;
-  }
+  .featured-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 2rem; line-height: 1.15; letter-spacing: -0.02em; color: var(--white); margin-bottom: 1rem; text-decoration: none; display: block; }
   .featured-title:hover { color: var(--sky); }
   .featured-desc { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 2rem; }
   .featured-highlights { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 2rem; }
-  .featured-highlights li {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.65);
-    display: flex;
-    gap: 0.7rem;
-    align-items: flex-start;
-    line-height: 1.5;
-  }
-  .featured-highlights li::before {
-    content: '→';
-    color: var(--steel);
-    flex-shrink: 0;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.75rem;
-    padding-top: 0.05rem;
-  }
-  .featured-sidebar {
-    background: var(--surface2);
-    border-left: 1px solid var(--border);
-    padding: 2.5rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  .sidebar-block-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--steel);
-    margin-bottom: 0.75rem;
-    display: block;
-  }
-  .sidebar-metric {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    padding-bottom: 1.2rem;
-    border-bottom: 1px solid var(--border);
-  }
+  .featured-highlights li { font-size: 0.85rem; color: rgba(255,255,255,0.65); display: flex; gap: 0.7rem; align-items: flex-start; line-height: 1.5; }
+  .featured-highlights li::before { content: '→'; color: var(--steel); flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; padding-top: 0.05rem; }
+  .featured-sidebar { background: var(--surface2); border-left: 1px solid var(--border); padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .sidebar-block-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--steel); margin-bottom: 0.75rem; display: block; }
+  .sidebar-metric { display: flex; flex-direction: column; gap: 0.3rem; padding-bottom: 1.2rem; border-bottom: 1px solid var(--border); }
   .sidebar-metric:last-child { border-bottom: none; padding-bottom: 0; }
   .sidebar-country { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: var(--mid); letter-spacing: 0.1em; }
   .sidebar-val { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.6rem; color: var(--white); line-height: 1; }
   .sidebar-val.alert { color: #e05c5c; }
+  .sidebar-val.validated { color: #4fc98a; }
   .sidebar-note { font-size: 0.75rem; color: rgba(255,255,255,0.4); line-height: 1.4; }
   .sidebar-trend-up   { color: #4fc98a; font-size: 0.7rem; font-family: 'IBM Plex Mono', monospace; }
   .sidebar-trend-down { color: #e05c5c; font-size: 0.7rem; font-family: 'IBM Plex Mono', monospace; }
   .sidebar-trend-alert { color: #e05c5c; font-size: 0.7rem; font-family: 'IBM Plex Mono', monospace; font-weight: 500; }
+  .sidebar-trend-gold { color: var(--accent-gold); font-size: 0.7rem; font-family: 'IBM Plex Mono', monospace; }
   .sidebar-trend-neutral { color: var(--sky); font-size: 0.7rem; font-family: 'IBM Plex Mono', monospace; }
 
   /* ARCHIVE */
   .archive-section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
   .archive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1rem; }
-  .archive-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    text-decoration: none;
-    display: block;
-    transition: border-color 0.2s, transform 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-  .archive-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--navy), var(--steel), transparent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s;
-  }
+  .archive-card { background: var(--surface); border: 1px solid var(--border); padding: 2rem; text-decoration: none; display: block; transition: border-color 0.2s, transform 0.2s; position: relative; overflow: hidden; }
+  .archive-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--navy), var(--steel), transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
   .archive-card:hover { border-color: var(--steel); transform: translateY(-2px); }
   .archive-card:hover::after { transform: scaleX(1); }
   .archive-card.pilot-card { border-color: rgba(201,168,76,0.2); }
   .archive-card.pilot-card::after { background: linear-gradient(90deg, rgba(201,168,76,0.3), var(--accent-gold), transparent); }
-  .archive-card-date {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--steel);
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .archive-card-vol {
-    display: inline-block;
-    background: rgba(115,153,198,0.1);
-    border: 1px solid var(--border);
-    padding: 0.1rem 0.4rem;
-    font-size: 0.52rem;
-    color: var(--mid);
-  }
+  .archive-card-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--steel); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.6rem; }
+  .archive-card-vol { display: inline-block; background: rgba(115,153,198,0.1); border: 1px solid var(--border); padding: 0.1rem 0.4rem; font-size: 0.52rem; color: var(--mid); }
   .archive-card-vol.pilot { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.2); color: var(--accent-gold); }
   .archive-card-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.15rem; line-height: 1.2; color: var(--white); margin-bottom: 0.75rem; }
   .archive-card-desc { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 1.2rem; }
   .archive-card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .archive-tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.52rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--mid);
-    border: 1px solid var(--border);
-    padding: 0.15rem 0.45rem;
-  }
-  .archive-card-coming {
-    position: absolute;
-    inset: 0;
-    background: rgba(10,26,42,0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .coming-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--mid);
-    border: 1px solid var(--border);
-    padding: 0.4rem 1rem;
-  }
+  .archive-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.52rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); border: 1px solid var(--border); padding: 0.15rem 0.45rem; }
+  .archive-card-coming { position: absolute; inset: 0; background: rgba(10,26,42,0.7); display: flex; align-items: center; justify-content: center; }
+  .coming-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); border: 1px solid var(--border); padding: 0.4rem 1rem; }
 
   /* THESIS PILLARS */
   .thesis-section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-  .thesis-pillars {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    margin-top: 2.5rem;
-  }
+  .thesis-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 2.5rem; }
   .pillar { background: var(--surface); padding: 2.5rem 1.8rem; transition: background 0.2s; position: relative; overflow: hidden; }
   .pillar:hover { background: var(--surface2); }
   .pillar-num { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 5rem; color: rgba(115,153,198,0.06); position: absolute; top: -0.5rem; right: 0.5rem; line-height: 1; pointer-events: none; }
@@ -565,17 +365,7 @@
 
   /* NEWSLETTER */
   .newsletter-strip { padding: 5rem 0; }
-  .newsletter-inner {
-    background: var(--surface2);
-    border: 1px solid var(--border-strong);
-    padding: 3.5rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-  }
+  .newsletter-inner { background: var(--surface2); border: 1px solid var(--border-strong); padding: 3.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; overflow: hidden; }
   .newsletter-inner::before { content: '✉'; position: absolute; right: 2rem; bottom: -1rem; font-size: 10rem; color: rgba(115,153,198,0.04); pointer-events: none; line-height: 1; }
   .newsletter-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 2rem; line-height: 1.15; color: var(--white); margin-bottom: 0.75rem; }
   .newsletter-title em { color: var(--sky); font-style: italic; }
@@ -604,7 +394,6 @@
   .footer-copy { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--mid); text-transform: uppercase; }
   .footer-disclaimer { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.08em; color: rgba(88,87,90,0.6); text-align: right; max-width: 480px; line-height: 1.5; }
 
-  /* ANIMATIONS */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
   .fade-up { animation: fadeUp 0.7s ease both; }
   .fade-up-1 { animation-delay: 0.1s; }
@@ -612,7 +401,6 @@
   .fade-up-3 { animation-delay: 0.34s; }
   .fade-up-4 { animation-delay: 0.46s; }
 
-  /* RESPONSIVE */
   @media (max-width: 900px) {
     nav { padding: 0 1.5rem; }
     .nav-links { gap: 1.2rem; }
@@ -652,48 +440,52 @@
         <a href="disclaimer.html">Disclaimer</a>
       </div>
     </li>
-    <li><a href="antifragile_africa_weekly_22apr2026.html" class="nav-cta">Latest Issue →</a></li>
+    <li><a href="antifragile_africa_weekly_29apr2026.html" class="nav-cta">Latest Issue →</a></li>
   </ul>
 </nav>
 
-<!-- TICKER — Updated to Vol. 03 data -->
+<!-- TICKER — Updated to Vol. 04 data -->
 <div class="ticker">
   <div class="ticker-label">Live Signals</div>
   <div class="ticker-track">
-    <span class="ticker-item"><span class="ti-label">NGN P2P PREMIUM</span><span class="ti-val">~17.5%</span><span class="ticker-alert">⚠ THRESHOLD CROSSED</span></span>
+    <span class="ticker-item"><span class="ti-label">NGN P2P PREMIUM</span><span class="ti-val">~18.5%</span><span class="ticker-alert">⚠ DAY 18 — STRUCTURAL</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">KES SPREAD</span><span class="ti-val">~4.8%</span><span class="ticker-up">↑ CORRIDOR-DRIVEN</span></span>
+    <span class="ticker-item"><span class="ti-label">KES SPREAD</span><span class="ti-val">~5.1%</span><span class="ticker-up">↑ MULTI-CORRIDOR</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">ZAR PREMIUM</span><span class="ti-val">~3.1%</span><span class="ticker-up">↑ REVERTING</span></span>
+    <span class="ticker-item"><span class="ti-label">ZAR PREMIUM</span><span class="ti-val">~3.5%</span><span class="ticker-up">↑ PENSION WAVE</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">GHS SPREAD</span><span class="ti-val">~10%</span><span class="ticker-up">↑ PRE-RESOLUTION</span></span>
+    <span class="ticker-item"><span class="ti-label">GHS SPREAD</span><span class="ti-val">~9.2%</span><span class="ticker-up">↓ COMPRESSING</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">WAEMU · XOF</span><span class="ti-val">~5.6%</span><span class="ticker-up">★ FIRST SIGNAL</span></span>
+    <span class="ticker-item"><span class="ti-label">WAEMU · XOF</span><span class="ti-val">~6.8%</span><span class="ticker-gold">⏱ T−6 WEEKS BCEAO</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">LAGOS OTC</span><span class="ti-val">$100–150M/WK</span><span class="ticker-alert">RATIONING</span></span>
+    <span class="ticker-item"><span class="ti-label">EGYPT · EGP</span><span class="ti-val">~7.1%</span><span class="ticker-up">★ FRAMEWORK DRAFT</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">GHANA</span><span class="ti-val">BoG LICENSING PATH</span><span class="ticker-up">↑ NOW OPEN</span></span>
+    <span class="ticker-item"><span class="ti-label">SA PENSION</span><span class="ti-val">FIRST DISCLOSURE</span><span class="ticker-up">✓ VALIDATED</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">BCEAO JUNE</span><span class="ti-val">BINARY CATALYST</span><span class="ticker-up">WATCH</span></span>
+    <span class="ticker-item"><span class="ti-label">LAGOS OTC</span><span class="ti-val">$105–155M/WK</span><span class="ticker-alert">NORMALISING</span></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item"><span class="ti-label">DRC KINSHASA</span><span class="ti-val">FIRST SIGNAL</span><span class="ticker-gold">★ NEW HUB</span></span>
     <span class="ticker-sep">·</span>
     <span class="ticker-item"><span class="ti-label">MARKETS COVERED</span><span class="ti-val">54 AFRICAN STATES</span></span>
     <span class="ticker-sep">·</span>
-    <!-- duplicate for seamless loop -->
-    <span class="ticker-item"><span class="ti-label">NGN P2P PREMIUM</span><span class="ti-val">~17.5%</span><span class="ticker-alert">⚠ THRESHOLD CROSSED</span></span>
+    <!-- duplicate -->
+    <span class="ticker-item"><span class="ti-label">NGN P2P PREMIUM</span><span class="ti-val">~18.5%</span><span class="ticker-alert">⚠ DAY 18 — STRUCTURAL</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">KES SPREAD</span><span class="ti-val">~4.8%</span><span class="ticker-up">↑ CORRIDOR-DRIVEN</span></span>
+    <span class="ticker-item"><span class="ti-label">KES SPREAD</span><span class="ti-val">~5.1%</span><span class="ticker-up">↑ MULTI-CORRIDOR</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">ZAR PREMIUM</span><span class="ti-val">~3.1%</span><span class="ticker-up">↑ REVERTING</span></span>
+    <span class="ticker-item"><span class="ti-label">ZAR PREMIUM</span><span class="ti-val">~3.5%</span><span class="ticker-up">↑ PENSION WAVE</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">GHS SPREAD</span><span class="ti-val">~10%</span><span class="ticker-up">↑ PRE-RESOLUTION</span></span>
+    <span class="ticker-item"><span class="ti-label">GHS SPREAD</span><span class="ti-val">~9.2%</span><span class="ticker-up">↓ COMPRESSING</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">WAEMU · XOF</span><span class="ti-val">~5.6%</span><span class="ticker-up">★ FIRST SIGNAL</span></span>
+    <span class="ticker-item"><span class="ti-label">WAEMU · XOF</span><span class="ti-val">~6.8%</span><span class="ticker-gold">⏱ T−6 WEEKS BCEAO</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">LAGOS OTC</span><span class="ti-val">$100–150M/WK</span><span class="ticker-alert">RATIONING</span></span>
+    <span class="ticker-item"><span class="ti-label">EGYPT · EGP</span><span class="ti-val">~7.1%</span><span class="ticker-up">★ FRAMEWORK DRAFT</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">GHANA</span><span class="ti-val">BoG LICENSING PATH</span><span class="ticker-up">↑ NOW OPEN</span></span>
+    <span class="ticker-item"><span class="ti-label">SA PENSION</span><span class="ti-val">FIRST DISCLOSURE</span><span class="ticker-up">✓ VALIDATED</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">BCEAO JUNE</span><span class="ti-val">BINARY CATALYST</span><span class="ticker-up">WATCH</span></span>
+    <span class="ticker-item"><span class="ti-label">LAGOS OTC</span><span class="ti-val">$105–155M/WK</span><span class="ticker-alert">NORMALISING</span></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item"><span class="ti-label">DRC KINSHASA</span><span class="ti-val">FIRST SIGNAL</span><span class="ticker-gold">★ NEW HUB</span></span>
     <span class="ticker-sep">·</span>
     <span class="ticker-item"><span class="ti-label">MARKETS COVERED</span><span class="ti-val">54 AFRICAN STATES</span></span>
   </div>
@@ -708,7 +500,7 @@
       Institutional-grade intelligence on African crypto markets. Capital flows, regulatory arbitrage, OTC signals, and hidden trades — for allocators who understand that Africa's monetary dysfunction is crypto's greatest growth engine.
     </p>
     <div class="hero-cta-group fade-up fade-up-4">
-      <a href="antifragile_africa_weekly_22apr2026.html" class="btn-primary">Read Latest Issue →</a>
+      <a href="antifragile_africa_weekly_29apr2026.html" class="btn-primary">Read Latest Issue →</a>
       <a href="about.html" class="btn-secondary">Our Thesis</a>
     </div>
   </div>
@@ -736,60 +528,60 @@
 
 <div class="container">
 
-  <!-- LATEST ISSUE — Vol. 03 -->
+  <!-- LATEST ISSUE — Vol. 04 -->
   <section class="featured-issue">
     <div class="section-eyebrow">Latest Report</div>
     <div class="section-title">This Week's <em>Intelligence</em></div>
-    <p class="section-sub">Vol. 03 — 22 April 2026 — 5 agents, 9 sections, dollarization threshold confirmed</p>
+    <p class="section-sub">Vol. 04 — 29 April 2026 — 7 hidden trades, 2 thesis validations, 2 new markets</p>
 
     <div class="featured-card">
       <div class="featured-body">
         <div class="featured-meta">
           <span class="featured-badge">Latest</span>
-          <span class="featured-badge-alert">⚠ Threshold Alert</span>
-          <span class="featured-date">22 April 2026</span>
-          <span class="featured-vol">Vol. 03</span>
+          <span class="featured-badge-alert">⚠ Day 18 Alert</span>
+          <span class="featured-badge-green">✓ SA Pension Validated</span>
+          <span class="featured-date">29 April 2026</span>
+          <span class="featured-vol">Vol. 04</span>
         </div>
-        <a href="antifragile_africa_weekly_22apr2026.html" class="featured-title">
-          Nigeria Crosses the Dollarization Threshold.<br>Ghana Opens. WAEMU Wakes.
+        <a href="antifragile_africa_weekly_29apr2026.html" class="featured-title">
+          The Ratchet is Structural. The Pension Wave Has Begun.
         </a>
         <p class="featured-desc">
-          Day 11 above 15% P2P spread in Nigeria — the informal dollarization threshold is confirmed. Ghana's Bank of Ghana issues a de facto VASP licensing pathway, becoming Africa's fourth open jurisdiction. The WAEMU franc bloc registers its first measurable stablecoin premium. Tanzania publishes its first digital assets signal. South Africa's Regulation 28 memo enters active circulation among pension trustees.
+          Nigeria enters day 18 above the dollarization threshold with no CBN action — the premium has normalised at 18.5% and the ratchet is now structurally irreversible. South Africa's first pension fund crypto disclosure arrives ahead of forecast, triggering the institutional replication wave. Egypt pivots toward licensing with a remittance-focused framework. DRC Kinshasa emerges as the continent's most unexpected new frontier.
         </p>
         <ul class="featured-highlights">
-          <li>Nigeria crosses the dollarization ratchet point — CBN MPC meets, takes no action. The premium now has structural permanence.</li>
-          <li>Ghana moves from AMBIGUOUS to OPEN — licensing path via existing Payment Systems Act, no new legislation required</li>
-          <li>WAEMU (8 countries, 140M people) registers ~5.6% CFA/USDT premium — Africa's most underpriced adoption story</li>
-          <li>BCEAO June statement identified as the most consequential binary regulatory event in African crypto in 2026</li>
-          <li>South Africa R5.5T pension market enters pre-decision phase — institutional custody infrastructure gap identified as Trade #5</li>
+          <li>CBN Governor labels P2P "speculative fringe" — inadvertently signals de facto tolerance, deepening informal adoption</li>
+          <li>SA pension fund (~R12B AUM) discloses 1% BTC allocation — Sandton OTC volumes surge 22% week-on-week ahead of replication wave</li>
+          <li>Egypt FRA draft framework targets remittance operators, not speculators — Gulf-to-Egypt corridor is the play</li>
+          <li>DRC Kinshasa OTC first detected — dollar format upgrade story, not monetary hedge — zero institutional competition</li>
+          <li>BCEAO June statement T−6 weeks: informal market already front-running — final positioning window closing</li>
         </ul>
-        <a href="antifragile_africa_weekly_22apr2026.html" class="btn-primary">Read Full Report →</a>
+        <a href="antifragile_africa_weekly_29apr2026.html" class="btn-primary">Read Full Report →</a>
       </div>
       <div class="featured-sidebar">
-        <span class="sidebar-block-label">Vol. 03 Spreads</span>
+        <span class="sidebar-block-label">Vol. 04 Spreads</span>
         <div class="sidebar-metric">
           <div class="sidebar-country">Nigeria · NGN</div>
-          <div class="sidebar-val alert">~17.5%</div>
-          <div class="sidebar-trend-alert">⚠ DAY 11 — THRESHOLD CROSSED</div>
-          <div class="sidebar-note">Informal dollarization ratchet confirmed</div>
+          <div class="sidebar-val alert">~18.5%</div>
+          <div class="sidebar-trend-alert">⚠ DAY 18 — STRUCTURAL</div>
+          <div class="sidebar-note">Ratchet confirmed irreversible at this threshold</div>
         </div>
         <div class="sidebar-metric">
-          <div class="sidebar-country">Kenya · KES</div>
-          <div class="sidebar-val">~4.8%</div>
-          <div class="sidebar-trend-up">↑ ETB corridor widening</div>
-          <div class="sidebar-note">Regional aggregator role deepening</div>
+          <div class="sidebar-country">WAEMU · XOF</div>
+          <div class="sidebar-val">~6.8%</div>
+          <div class="sidebar-trend-gold">⏱ BCEAO T−6 Weeks</div>
+          <div class="sidebar-note">Informal market front-running June statement</div>
         </div>
         <div class="sidebar-metric">
           <div class="sidebar-country">Ghana · GHS</div>
-          <div class="sidebar-val">~10%</div>
-          <div class="sidebar-trend-up">↑ Pre-resolution tension</div>
-          <div class="sidebar-note">BoG licensing path confirmed</div>
+          <div class="sidebar-val">~9.2%</div>
+          <div class="sidebar-trend-down">↓ Compression Arc Week 1</div>
+          <div class="sidebar-note">First license app filed — 8–12 week compression expected</div>
         </div>
         <div class="sidebar-metric">
-          <div class="sidebar-country">WAEMU · XOF · NEW</div>
-          <div class="sidebar-val">~5.6%</div>
-          <div class="sidebar-trend-up">★ First detection</div>
-          <div class="sidebar-note">140M people, 8 countries — first signal</div>
+          <div class="sidebar-country">SA Pension Thesis</div>
+          <div class="sidebar-val validated">✓ Confirmed</div>
+          <div class="sidebar-note">First R12B AUM disclosure. Replication wave initiating.</div>
         </div>
         <div class="sidebar-metric">
           <div class="sidebar-country">Audit Score</div>
@@ -800,7 +592,7 @@
     </div>
   </section>
 
-  <!-- ARCHIVE — All 4 issues + upcoming -->
+  <!-- ARCHIVE -->
   <section class="archive-section">
     <div class="section-eyebrow">Archive</div>
     <div class="section-title">All <em>Reports</em></div>
@@ -808,46 +600,49 @@
 
     <div class="archive-grid">
 
+      <!-- Vol 04 — live -->
+      <a href="antifragile_africa_weekly_29apr2026.html" class="archive-card">
+        <div class="archive-card-date">29 April 2026<span class="archive-card-vol">Vol. 04</span></div>
+        <div class="archive-card-title">The Ratchet is Structural. Pension Wave Begins.</div>
+        <div class="archive-card-desc">Nigeria day 18. SA pension validated. Egypt licensing pivot. DRC Kinshasa first signal. BCEAO T−6 weeks. 7 hidden trades.</div>
+        <div class="archive-card-tags">
+          <span class="archive-tag">Nigeria</span>
+          <span class="archive-tag">South Africa</span>
+          <span class="archive-tag">Egypt</span>
+          <span class="archive-tag">DRC</span>
+          <span class="archive-tag">WAEMU</span>
+        </div>
+      </a>
+
       <!-- Vol 03 — live -->
       <a href="antifragile_africa_weekly_22apr2026.html" class="archive-card">
-        <div class="archive-card-date">
-          22 April 2026
-          <span class="archive-card-vol">Vol. 03</span>
-        </div>
+        <div class="archive-card-date">22 April 2026<span class="archive-card-vol">Vol. 03</span></div>
         <div class="archive-card-title">Nigeria Crosses the Dollarization Threshold</div>
         <div class="archive-card-desc">Day 11 above 15%. Ghana opens. WAEMU wakes. SA pension memo circulates. BCEAO June catalyst identified.</div>
         <div class="archive-card-tags">
           <span class="archive-tag">Nigeria</span>
           <span class="archive-tag">Ghana</span>
           <span class="archive-tag">WAEMU</span>
-          <span class="archive-tag">South Africa</span>
           <span class="archive-tag">Tanzania</span>
         </div>
       </a>
 
       <!-- Vol 02 — live -->
       <a href="antifragile_africa_weekly_18apr2026.html" class="archive-card">
-        <div class="archive-card-date">
-          18 April 2026
-          <span class="archive-card-vol">Vol. 02</span>
-        </div>
+        <div class="archive-card-date">18 April 2026<span class="archive-card-vol">Vol. 02</span></div>
         <div class="archive-card-title">The Dollarization Threshold Approaches</div>
         <div class="archive-card-desc">NGN spread at ~16% — day 6. Ghana pre-crystallizes. ETB→Kenya corridor emerges. 5 hidden trades including 2 new.</div>
         <div class="archive-card-tags">
           <span class="archive-tag">Nigeria</span>
           <span class="archive-tag">Ghana</span>
           <span class="archive-tag">Kenya</span>
-          <span class="archive-tag">OTC</span>
           <span class="archive-tag">Ethiopia</span>
         </div>
       </a>
 
       <!-- Vol 01 — live -->
       <a href="antifragile_africa_weekly_15apr2026.html" class="archive-card">
-        <div class="archive-card-date">
-          15 April 2026
-          <span class="archive-card-vol">Vol. 01</span>
-        </div>
+        <div class="archive-card-date">15 April 2026<span class="archive-card-vol">Vol. 01</span></div>
         <div class="archive-card-title">Inaugural Report: The Invisible Market</div>
         <div class="archive-card-desc">Lagos–Abidjan corridor. VASP first-mover window. Nigeria's shadow GDP. 54-state regulatory map. Five hidden trades.</div>
         <div class="archive-card-tags">
@@ -855,52 +650,28 @@
           <span class="archive-tag">Kenya</span>
           <span class="archive-tag">South Africa</span>
           <span class="archive-tag">OTC</span>
-          <span class="archive-tag">Regulation</span>
         </div>
       </a>
 
       <!-- Pilot — live -->
       <a href="antifragile_africa_weekly_29mar2026.html" class="archive-card pilot-card">
-        <div class="archive-card-date">
-          29 March 2026
-          <span class="archive-card-vol pilot">Pilot / Vol. 00</span>
-        </div>
+        <div class="archive-card-date">29 March 2026<span class="archive-card-vol pilot">Pilot / Vol. 00</span></div>
         <div class="archive-card-title">Pilot Issue: Founding the Thesis</div>
-        <div class="archive-card-desc">Structural baseline established. NGN ~11%, KES ~3.5%, ZAR ~2.8%. 5 trades identified. Memory system initialised. The invisible market defined.</div>
+        <div class="archive-card-desc">Structural baseline established. NGN ~11%, KES ~3.5%, ZAR ~2.8%. 5 trades identified. Memory system initialised.</div>
         <div class="archive-card-tags">
           <span class="archive-tag">Nigeria</span>
           <span class="archive-tag">Kenya</span>
           <span class="archive-tag">South Africa</span>
-          <span class="archive-tag">Ethiopia</span>
           <span class="archive-tag">Pilot</span>
         </div>
       </a>
 
-      <!-- Vol 04 — coming -->
-      <div class="archive-card" style="pointer-events:none; opacity:0.5;">
-        <div class="archive-card-date">
-          29 April 2026
-          <span class="archive-card-vol">Vol. 04</span>
-        </div>
-        <div class="archive-card-title">Next Issue</div>
-        <div class="archive-card-desc">BCEAO countdown · CBN intervention watch · Tanzania consultation closes · SA pension signals</div>
-        <div class="archive-card-tags">
-          <span class="archive-tag">Coming Soon</span>
-        </div>
-        <div class="archive-card-coming"><span class="coming-label">Publishing 29 Apr</span></div>
-      </div>
-
-      <!-- Vol 05 — placeholder -->
-      <div class="archive-card" style="pointer-events:none; opacity:0.3;">
-        <div class="archive-card-date">
-          6 May 2026
-          <span class="archive-card-vol">Vol. 05</span>
-        </div>
+      <!-- Vol 05 — coming -->
+      <div class="archive-card" style="pointer-events:none; opacity:0.45;">
+        <div class="archive-card-date">6 May 2026<span class="archive-card-vol">Vol. 05</span></div>
         <div class="archive-card-title">Coming Soon</div>
-        <div class="archive-card-desc">Weekly intelligence continues to compound.</div>
-        <div class="archive-card-tags">
-          <span class="archive-tag">Coming Soon</span>
-        </div>
+        <div class="archive-card-desc">CBN MPC May watch · BCEAO countdown continues · Egypt comment period closes · SA replication wave</div>
+        <div class="archive-card-tags"><span class="archive-tag">Coming Soon</span></div>
         <div class="archive-card-coming"><span class="coming-label">Publishing 6 May</span></div>
       </div>
 
@@ -912,7 +683,6 @@
     <div class="section-eyebrow">Core Framework</div>
     <div class="section-title">Crypto in Africa is <em>Not Speculation</em></div>
     <p class="section-sub">Four structural roles — enforced across every report, every week.</p>
-
     <div class="thesis-pillars">
       <div class="pillar">
         <span class="pillar-num">1</span>
@@ -957,9 +727,7 @@
           <input type="email" placeholder="your@email.com">
           <button type="button">Subscribe</button>
         </div>
-        <p class="form-disclaimer">
-          Institutional and professional allocators only. No financial advice. Simulated data where noted. Unsubscribe at any time.
-        </p>
+        <p class="form-disclaimer">Institutional and professional allocators only. No financial advice. Simulated data where noted. Unsubscribe at any time.</p>
       </div>
     </div>
   </section>
@@ -976,6 +744,7 @@
     <div>
       <span class="footer-col-title">Reports</span>
       <ul class="footer-links">
+        <li><a href="antifragile_africa_weekly_29apr2026.html">Vol. 04 — 29 Apr 2026</a></li>
         <li><a href="antifragile_africa_weekly_22apr2026.html">Vol. 03 — 22 Apr 2026</a></li>
         <li><a href="antifragile_africa_weekly_18apr2026.html">Vol. 02 — 18 Apr 2026</a></li>
         <li><a href="antifragile_africa_weekly_15apr2026.html">Vol. 01 — 15 Apr 2026</a></li>
@@ -997,7 +766,7 @@
         <li><a href="#">Kenya · East Africa</a></li>
         <li><a href="#">South Africa · ZAR</a></li>
         <li><a href="#">WAEMU · CFA Bloc</a></li>
-        <li><a href="#">54 African States</a></li>
+        <li><a href="#">Egypt · Gulf Corridor</a></li>
       </ul>
     </div>
     <div>
