@@ -11,56 +11,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IBM+Plex+Mono:wght@300;400;500&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #00355f;
-    --steel: #7399c6;
-    --sky: #acd4f1;
-    --charcoal: #231f20;
-    --mid: #58575a;
-    --white: #ffffff;
-    --accent-gold: #c9a84c;
-    --bg: #0a1a2a;
-    --surface: #0f2236;
-    --surface2: #162d46;
-    --border: rgba(115, 153, 198, 0.18);
-    --border-strong: rgba(115, 153, 198, 0.35);
+    --navy: #00355f; --steel: #7399c6; --sky: #acd4f1;
+    --charcoal: #231f20; --mid: #58575a; --white: #ffffff;
+    --accent-gold: #c9a84c; --bg: #0a1a2a; --surface: #0f2236;
+    --surface2: #162d46; --border: rgba(115,153,198,0.18);
+    --border-strong: rgba(115,153,198,0.35);
+    --green: #4fc98a; --red: #e05c5c;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--white);
-    font-family: 'Source Serif 4', Georgia, serif;
-    font-weight: 300;
-    line-height: 1.75;
-    font-size: 16px;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 1000; opacity: 0.4;
-  }
+  body { background: var(--bg); color: var(--white); font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; line-height: 1.75; font-size: 16px; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1000; opacity: 0.4; }
 
   /* NAV */
-  nav {
-    position: sticky; top: 0; z-index: 200;
-    background: rgba(10,26,42,0.97);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border-strong);
-    height: 58px;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 3rem;
-  }
+  nav { position: sticky; top: 0; z-index: 200; background: rgba(10,26,42,0.97); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border-strong); height: 58px; display: flex; align-items: center; justify-content: space-between; padding: 0 3rem; }
   .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 0.95rem; color: var(--white); letter-spacing: -0.01em; text-decoration: none; }
   .nav-brand span { color: var(--sky); font-style: italic; }
   .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
   .nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover, .nav-links a.active { color: var(--steel); }
-
   .nav-dropdown { position: relative; }
   .nav-dropdown-toggle { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); cursor: pointer; display: flex; align-items: center; gap: 0.35rem; transition: color 0.2s; }
   .nav-dropdown-toggle::after { content: '▾'; font-size: 0.55rem; opacity: 0.6; }
@@ -70,7 +39,6 @@
   .nav-dropdown-menu a { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); text-decoration: none; padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); transition: color 0.15s, background 0.15s; white-space: nowrap; }
   .nav-dropdown-menu a:last-child { border-bottom: none; }
   .nav-dropdown-menu a:hover { color: var(--sky); background: var(--surface); }
-
   .nav-cta { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sky) !important; border: 1px solid rgba(172,212,241,0.35); padding: 0.3rem 0.9rem; transition: background 0.2s !important; }
   .nav-cta:hover { background: rgba(172,212,241,0.1) !important; }
 
@@ -85,12 +53,12 @@
   .hero h1 em { color: var(--sky); font-style: italic; }
   .hero-tagline { font-size: 1.05rem; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 420px; margin-bottom: 2.5rem; }
   .hero-cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
-
   .btn-primary { display: inline-flex; align-items: center; gap: 0.6rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--charcoal); background: var(--sky); padding: 0.75rem 1.6rem; text-decoration: none; transition: background 0.2s, transform 0.15s; font-weight: 500; }
   .btn-primary:hover { background: var(--white); transform: translateY(-1px); }
   .btn-secondary { display: inline-flex; align-items: center; gap: 0.6rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--steel); border: 1px solid var(--border-strong); padding: 0.75rem 1.6rem; text-decoration: none; transition: border-color 0.2s, color 0.2s, transform 0.15s; }
   .btn-secondary:hover { border-color: var(--steel); color: var(--sky); transform: translateY(-1px); }
 
+  /* HERO RIGHT */
   .hero-stats { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3rem; }
   .hero-stat-row { display: flex; align-items: baseline; gap: 1rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
   .hero-stat-row:last-child { border-bottom: none; padding-bottom: 0; }
@@ -110,15 +78,16 @@
   .ticker-item { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); padding: 0 2.5rem; display: flex; align-items: center; gap: 0.5rem; }
   .ticker-item .ti-label { color: var(--steel); }
   .ticker-item .ti-val { color: rgba(255,255,255,0.75); }
-  .ticker-up { color: #4fc98a; }
-  .ticker-down { color: #e05c5c; }
-  .ticker-alert { color: #e05c5c; font-weight: 500; }
+  .ticker-up { color: var(--green); }
+  .ticker-down { color: var(--red); }
+  .ticker-alert { color: var(--red); font-weight: 500; }
   .ticker-gold { color: var(--accent-gold); }
   .ticker-sep { color: var(--border-strong); margin: 0 0.5rem; }
 
   /* CONTAINER */
   .container { max-width: 1140px; margin: 0 auto; padding: 0 3rem; }
 
+  /* SECTION HEADS */
   .section-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--steel); display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
   .section-eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 80px; }
   .section-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--white); margin-bottom: 0.5rem; }
@@ -132,8 +101,7 @@
   .featured-body { padding: 3rem; }
   .featured-meta { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; align-items: center; flex-wrap: wrap; }
   .featured-badge { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; background: var(--steel); color: var(--bg); padding: 0.2rem 0.6rem; }
-  .featured-badge-green { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; background: rgba(79,201,138,0.15); color: #4fc98a; border: 1px solid rgba(79,201,138,0.3); padding: 0.2rem 0.6rem; }
-  .featured-badge-alert { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; background: rgba(224,92,92,0.15); color: #e05c5c; border: 1px solid rgba(224,92,92,0.3); padding: 0.2rem 0.6rem; }
+  .featured-badge-gold { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; background: rgba(201,168,76,0.15); color: var(--accent-gold); border: 1px solid rgba(201,168,76,0.3); padding: 0.2rem 0.6rem; }
   .featured-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; color: var(--mid); }
   .featured-vol  { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; color: var(--mid); }
   .featured-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 2rem; line-height: 1.15; letter-spacing: -0.02em; color: var(--white); margin-bottom: 1rem; text-decoration: none; display: block; }
@@ -148,12 +116,10 @@
   .sidebar-metric:last-child { border-bottom: none; padding-bottom: 0; }
   .sidebar-country { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: var(--mid); letter-spacing: 0.1em; }
   .sidebar-val { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.6rem; color: var(--white); line-height: 1; }
-  .sidebar-val.alert { color: #e05c5c; }
-  .sidebar-val.validated { color: #4fc98a; }
+  .sidebar-val.alert { color: var(--red); }
   .sidebar-note { font-size: 0.75rem; color: rgba(255,255,255,0.4); line-height: 1.4; }
-  .sidebar-trend-up   { color: #4fc98a; font-size: 0.7rem; font-family: 'IBM Plex Mono', monospace; }
-  .sidebar-trend-down { color: #e05c5c; font-size: 0.7rem; font-family: 'IBM Plex Mono', monospace; }
-  .sidebar-trend-alert { color: #e05c5c; font-size: 0.7rem; font-family: 'IBM Plex Mono', monospace; font-weight: 500; }
+  .sidebar-trend-up { color: var(--green); font-size: 0.7rem; font-family: 'IBM Plex Mono', monospace; }
+  .sidebar-trend-down { color: var(--red); font-size: 0.7rem; font-family: 'IBM Plex Mono', monospace; }
   .sidebar-trend-gold { color: var(--accent-gold); font-size: 0.7rem; font-family: 'IBM Plex Mono', monospace; }
   .sidebar-trend-neutral { color: var(--sky); font-size: 0.7rem; font-family: 'IBM Plex Mono', monospace; }
 
@@ -263,52 +229,48 @@
         <a href="disclaimer.html">Disclaimer</a>
       </div>
     </li>
-    <li><a href="antifragile_africa_weekly_06may2026.html" class="nav-cta">Latest Issue →</a></li>
+    <li><a href="antifragile_africa_weekly_12may2026.html" class="nav-cta">Latest Issue →</a></li>
   </ul>
 </nav>
 
-<!-- TICKER — Updated to Vol. 05 data -->
+<!-- TICKER — Vol. 06 signals -->
 <div class="ticker">
   <div class="ticker-label">Live Signals</div>
   <div class="ticker-track">
-    <span class="ticker-item"><span class="ti-label">NGN P2P PREMIUM</span><span class="ti-val">~19.2%</span><span class="ticker-alert">⚠ DAY 25 — PRE-MPC</span></span>
+    <span class="ticker-item"><span class="ti-label">NGN P2P PREMIUM</span><span class="ti-val">~17.8%</span><span class="ticker-down">↓ DISINFLATION PLATEAU</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">KES SPREAD</span><span class="ti-val">~5.5%</span><span class="ticker-up">↑ MULTI-CORRIDOR</span></span>
+    <span class="ticker-item"><span class="ti-label">WAEMU · XOF</span><span class="ti-val">~8.3%</span><span class="ticker-gold">★ POST-DAKAR SURGE</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">ZAR PREMIUM</span><span class="ti-val">~4.1%</span><span class="ticker-up">↑ PENSION WAVE</span></span>
+    <span class="ticker-item"><span class="ti-label">KENYA · KES</span><span class="ti-val">~5.2%</span><span class="ticker-up">↑ VASP ANTICIPATION</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">GHS SPREAD</span><span class="ti-val">~8.1%</span><span class="ticker-down">↓ COMPRESSING</span></span>
+    <span class="ticker-item"><span class="ti-label">ETH · ETB</span><span class="ti-val">~28%</span><span class="ticker-alert">⚠ STRUCTURAL HIGH</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">WAEMU · XOF</span><span class="ti-val">~7.7%</span><span class="ticker-gold">⏱ BCEAO T−5 WEEKS</span></span>
+    <span class="ticker-item"><span class="ti-label">ZAR PREMIUM</span><span class="ti-val">~3.9%</span><span class="ticker-up">↑ PENSION WAVE</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">ANGOLA · AOA</span><span class="ti-val">~12%</span><span class="ticker-gold">★ FIRST SIGNAL</span></span>
+    <span class="ticker-item"><span class="ti-label">BCEAO DAKAR</span><span class="ti-val">MAY 8 CONFERENCE</span><span class="ticker-gold">★ WAEMU FRAMEWORK</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">SA PENSION</span><span class="ti-val">2 DISCLOSURES</span><span class="ticker-up">✓ WAVE CONFIRMED</span></span>
+    <span class="ticker-item"><span class="ti-label">CBN MPC</span><span class="ti-val">MAY 19–20</span><span class="ticker-alert">⚠ BINARY EVENT</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">CBN MPC</span><span class="ti-val">19–20 MAY</span><span class="ticker-alert">⚠ BINARY EVENT</span></span>
-    <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">MOROCCO</span><span class="ti-val">PRE-CRYSTALLISATION</span><span class="ticker-gold">★ WATCH</span></span>
+    <span class="ticker-item"><span class="ti-label">KENYA VASP</span><span class="ti-val">REGULATIONS IMMINENT</span><span class="ticker-up">50 FIRMS HQ RACE</span></span>
     <span class="ticker-sep">·</span>
     <span class="ticker-item"><span class="ti-label">MARKETS COVERED</span><span class="ti-val">54 AFRICAN STATES</span></span>
     <span class="ticker-sep">·</span>
     <!-- duplicate for loop -->
-    <span class="ticker-item"><span class="ti-label">NGN P2P PREMIUM</span><span class="ti-val">~19.2%</span><span class="ticker-alert">⚠ DAY 25 — PRE-MPC</span></span>
+    <span class="ticker-item"><span class="ti-label">NGN P2P PREMIUM</span><span class="ti-val">~17.8%</span><span class="ticker-down">↓ DISINFLATION PLATEAU</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">KES SPREAD</span><span class="ti-val">~5.5%</span><span class="ticker-up">↑ MULTI-CORRIDOR</span></span>
+    <span class="ticker-item"><span class="ti-label">WAEMU · XOF</span><span class="ti-val">~8.3%</span><span class="ticker-gold">★ POST-DAKAR SURGE</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">ZAR PREMIUM</span><span class="ti-val">~4.1%</span><span class="ticker-up">↑ PENSION WAVE</span></span>
+    <span class="ticker-item"><span class="ti-label">KENYA · KES</span><span class="ti-val">~5.2%</span><span class="ticker-up">↑ VASP ANTICIPATION</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">GHS SPREAD</span><span class="ti-val">~8.1%</span><span class="ticker-down">↓ COMPRESSING</span></span>
+    <span class="ticker-item"><span class="ti-label">ETH · ETB</span><span class="ti-val">~28%</span><span class="ticker-alert">⚠ STRUCTURAL HIGH</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">WAEMU · XOF</span><span class="ti-val">~7.7%</span><span class="ticker-gold">⏱ BCEAO T−5 WEEKS</span></span>
+    <span class="ticker-item"><span class="ti-label">ZAR PREMIUM</span><span class="ti-val">~3.9%</span><span class="ticker-up">↑ PENSION WAVE</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">ANGOLA · AOA</span><span class="ti-val">~12%</span><span class="ticker-gold">★ FIRST SIGNAL</span></span>
+    <span class="ticker-item"><span class="ti-label">BCEAO DAKAR</span><span class="ti-val">MAY 8 CONFERENCE</span><span class="ticker-gold">★ WAEMU FRAMEWORK</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">SA PENSION</span><span class="ti-val">2 DISCLOSURES</span><span class="ticker-up">✓ WAVE CONFIRMED</span></span>
+    <span class="ticker-item"><span class="ti-label">CBN MPC</span><span class="ti-val">MAY 19–20</span><span class="ticker-alert">⚠ BINARY EVENT</span></span>
     <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">CBN MPC</span><span class="ti-val">19–20 MAY</span><span class="ticker-alert">⚠ BINARY EVENT</span></span>
-    <span class="ticker-sep">·</span>
-    <span class="ticker-item"><span class="ti-label">MOROCCO</span><span class="ti-val">PRE-CRYSTALLISATION</span><span class="ticker-gold">★ WATCH</span></span>
+    <span class="ticker-item"><span class="ti-label">KENYA VASP</span><span class="ti-val">REGULATIONS IMMINENT</span><span class="ticker-up">50 FIRMS HQ RACE</span></span>
     <span class="ticker-sep">·</span>
     <span class="ticker-item"><span class="ti-label">MARKETS COVERED</span><span class="ti-val">54 AFRICAN STATES</span></span>
   </div>
@@ -323,7 +285,7 @@
       Institutional-grade intelligence on African crypto markets. Capital flows, regulatory arbitrage, OTC signals, and hidden trades — for allocators who understand that Africa's monetary dysfunction is crypto's greatest growth engine.
     </p>
     <div class="hero-cta-group fade-up fade-up-4">
-      <a href="antifragile_africa_weekly_06may2026.html" class="btn-primary">Read Latest Issue →</a>
+      <a href="antifragile_africa_weekly_12may2026.html" class="btn-primary">Read Latest Issue →</a>
       <a href="about.html" class="btn-secondary">Our Thesis</a>
     </div>
   </div>
@@ -334,8 +296,8 @@
         <div class="stat-desc">African states tracked weekly across all regulatory classifications</div>
       </div>
       <div class="hero-stat-row">
-        <div class="stat-num">5</div>
-        <div class="stat-desc">Specialized intelligence agents synthesized per report</div>
+        <div class="stat-num">28</div>
+        <div class="stat-desc">Specialized intelligence agents across 7 analytical layers</div>
       </div>
       <div class="hero-stat-row">
         <div class="stat-num">$1<em>T+</em></div>
@@ -351,79 +313,85 @@
 
 <div class="container">
 
-  <!-- LATEST ISSUE — Vol. 05 -->
+  <!-- LATEST ISSUE — Vol. 06 -->
   <section class="featured-issue">
     <div class="section-eyebrow">Latest Report</div>
     <div class="section-title">This Week's <em>Intelligence</em></div>
-    <p class="section-sub">Vol. 05 — 06 May 2026 — 7 hidden trades, 2 new markets, CBN binary event in 14 days</p>
+    <p class="section-sub">Vol. 06 — 12 May 2026 — 28 agents, 12 analytical layers, BCEAO framework signal</p>
 
     <div class="featured-card">
       <div class="featured-body">
         <div class="featured-meta">
           <span class="featured-badge">Latest</span>
-          <span class="featured-badge-alert">⚠ Day 25 Alert</span>
-          <span class="featured-badge-green">✓ Pension Wave × 2</span>
-          <span class="featured-date">06 May 2026</span>
-          <span class="featured-vol">Vol. 05</span>
+          <span class="featured-badge-gold">★ BCEAO Dakar</span>
+          <span class="featured-date">12 May 2026</span>
+          <span class="featured-vol">Vol. 06</span>
         </div>
-        <a href="antifragile_africa_weekly_06may2026.html" class="featured-title">
-          The Ratchet Holds. The Pension Wave Deepens.<br>Morocco Cracks. Angola Arrives.
+        <a href="antifragile_africa_weekly_12may2026.html" class="featured-title">
+          The BCEAO Speaks. The CBN Waits.<br>The Architecture of African Crypto Shifts.
         </a>
         <p class="featured-desc">
-          Nigeria reaches day 25 above the dollarization threshold with no CBN action — the CBN MPC meeting on 19–20 May is now the most consequential near-term event in African crypto. South Africa's second pension fund disclosure confirms the replication wave. Morocco enters pre-crystallisation. Angola registers its first OTC signal. The BCEAO June countdown reaches five weeks.
+          The BCEAO's May 8 Dakar conference explicitly called for a harmonized WAEMU crypto regulatory framework — the most significant structural development in Francophone African crypto in decades. Simultaneously, Nigeria's disinflation runs the most important empirical test of the dollarization ratchet thesis. Kenya's VASP regulations are imminent. Ethiopia registers the continent's highest demand with zero institutional coverage.
         </p>
         <ul class="featured-highlights">
-          <li>Nigeria ~19.2% P2P spread: plateau phase active — 4 MPC scenario paths modelled with probabilities</li>
-          <li>South Africa pension wave: second R8B AUM fund discloses 0.8% BTC — permission structure now self-replicating</li>
-          <li>Sandton OTC BTC supply squeeze: 48–72hr fill times on institutional tickets — custody infrastructure gap is present-tense urgent</li>
-          <li>Angola Luanda: first detectable USDT signal at ~12% spread — pre-dollarised market with zero institutional competition</li>
-          <li>Morocco: bank derisking memos follow Ghana Vol. 02 pattern exactly — 60–90 day crystallisation window opens today</li>
-          <li>Angola–DRC–Zambia Southern Central Africa triangle: $30–40B annual trade cluster with zero institutional settlement infrastructure</li>
-          <li>Safaricom: 5-signal stack with operational specificity — Q3 2026 M-Pesa announcement now base case</li>
+          <li>BCEAO Governor Kassi Brou: "Some countries still have a window to anticipate rather than react" — the 90-day WAEMU first-mover window is active now</li>
+          <li>Nigeria premium compressed to ~17.8% despite 11 months of disinflation — structural floor holding, ratchet thesis running its empirical test</li>
+          <li>~50 virtual asset firms seeking Nairobi regional HQ status as Kenya VASP regulations finalize — first-mover window closing</li>
+          <li>Ethiopia: ~180% stablecoin usage growth post-FX liberalization at ~28% spread — continent's cleanest adoption signal with zero institutional competition</li>
+          <li>Federal Reserve speech at BCEAO Dakar raises WAEMU digital sovereignty question — dollar-stablecoin architecture vs. African monetary sovereignty</li>
         </ul>
-        <a href="antifragile_africa_weekly_06may2026.html" class="btn-primary">Read Full Report →</a>
+        <a href="antifragile_africa_weekly_12may2026.html" class="btn-primary">Read Full Report →</a>
       </div>
       <div class="featured-sidebar">
-        <span class="sidebar-block-label">Vol. 05 Spreads</span>
+        <span class="sidebar-block-label">Vol. 06 Spreads</span>
         <div class="sidebar-metric">
           <div class="sidebar-country">Nigeria · NGN</div>
-          <div class="sidebar-val alert">~19.2%</div>
-          <div class="sidebar-trend-alert">⚠ DAY 25 — CBN MPC T−14</div>
-          <div class="sidebar-note">4 scenario paths. Binary event 19–20 May.</div>
+          <div class="sidebar-val alert">~17.8%</div>
+          <div class="sidebar-trend-down">↓ Disinflation Plateau</div>
+          <div class="sidebar-note">CBN MPC T-7. Ratchet floor holding above baseline.</div>
         </div>
         <div class="sidebar-metric">
           <div class="sidebar-country">WAEMU · XOF</div>
-          <div class="sidebar-val">~7.7%</div>
-          <div class="sidebar-trend-gold">⏱ BCEAO T−5 Weeks</div>
-          <div class="sidebar-note">Informal market front-running accelerating</div>
+          <div class="sidebar-val" style="color:var(--accent-gold)">~8.3%</div>
+          <div class="sidebar-trend-gold">★ Post-Dakar Surge</div>
+          <div class="sidebar-note">BCEAO framework signal. 8 countries, 140M people.</div>
         </div>
         <div class="sidebar-metric">
-          <div class="sidebar-country">Angola · AOA · NEW</div>
-          <div class="sidebar-val">~12%</div>
-          <div class="sidebar-trend-gold">★ First Detection</div>
-          <div class="sidebar-note">Pre-dollarised — zero institutional competition</div>
-        </div>
-        <div class="sidebar-metric">
-          <div class="sidebar-country">SA Pension Wave</div>
-          <div class="sidebar-val validated">2 × ✓</div>
-          <div class="sidebar-note">R8B + R12B AUM disclosures confirmed. Wave active.</div>
+          <div class="sidebar-country">Ethiopia · ETB</div>
+          <div class="sidebar-val alert">~28%</div>
+          <div class="sidebar-trend-up">⚠ Structural High</div>
+          <div class="sidebar-note">~180% stablecoin growth. Zero institutional competition.</div>
         </div>
         <div class="sidebar-metric">
           <div class="sidebar-country">Audit Score</div>
-          <div class="sidebar-val" style="color:#4fc98a">4.88</div>
+          <div class="sidebar-val" style="color:var(--green)">4.92</div>
           <div class="sidebar-note">Out of 5.0 — PASS ✓</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ARCHIVE — All issues -->
+  <!-- ARCHIVE -->
   <section class="archive-section">
     <div class="section-eyebrow">Archive</div>
     <div class="section-title">All <em>Reports</em></div>
     <p class="section-sub">Every issue, permanently available. Intelligence compounds.</p>
 
     <div class="archive-grid">
+
+      <!-- Vol 06 — live -->
+      <a href="antifragile_africa_weekly_12may2026.html" class="archive-card">
+        <div class="archive-card-date">12 May 2026<span class="archive-card-vol">Vol. 06</span></div>
+        <div class="archive-card-title">The BCEAO Speaks. The Architecture of African Crypto Shifts.</div>
+        <div class="archive-card-desc">BCEAO Dakar framework signal. Nigeria ratchet empirical test. Kenya VASP imminent. Ethiopia demand gap. CBN MPC binary T-7.</div>
+        <div class="archive-card-tags">
+          <span class="archive-tag">WAEMU</span>
+          <span class="archive-tag">Nigeria</span>
+          <span class="archive-tag">Kenya</span>
+          <span class="archive-tag">Ethiopia</span>
+          <span class="archive-tag">BCEAO</span>
+        </div>
+      </a>
 
       <!-- Vol 05 — live -->
       <a href="antifragile_africa_weekly_06may2026.html" class="archive-card">
@@ -435,7 +403,6 @@
           <span class="archive-tag">South Africa</span>
           <span class="archive-tag">Morocco</span>
           <span class="archive-tag">Angola</span>
-          <span class="archive-tag">WAEMU</span>
         </div>
       </a>
 
@@ -443,7 +410,7 @@
       <a href="antifragile_africa_weekly_29apr2026.html" class="archive-card">
         <div class="archive-card-date">29 April 2026<span class="archive-card-vol">Vol. 04</span></div>
         <div class="archive-card-title">The Ratchet is Structural. Pension Wave Begins.</div>
-        <div class="archive-card-desc">Nigeria day 18. SA pension validated. Egypt licensing pivot. DRC Kinshasa first signal. BCEAO T−6 weeks.</div>
+        <div class="archive-card-desc">Nigeria day 18. SA pension validated. Egypt licensing pivot. DRC Kinshasa first signal. 7 hidden trades.</div>
         <div class="archive-card-tags">
           <span class="archive-tag">Nigeria</span>
           <span class="archive-tag">South Africa</span>
@@ -503,6 +470,15 @@
           <span class="archive-tag">Pilot</span>
         </div>
       </a>
+
+      <!-- Vol 07 — coming -->
+      <div class="archive-card" style="pointer-events:none; opacity:0.45;">
+        <div class="archive-card-date">19 May 2026<span class="archive-card-vol">Vol. 07</span></div>
+        <div class="archive-card-title">Coming Soon</div>
+        <div class="archive-card-desc">CBN MPC outcome · BCEAO framework update · Kenya VASP gazette · Nigeria ratchet verdict</div>
+        <div class="archive-card-tags"><span class="archive-tag">Coming Soon</span></div>
+        <div class="archive-card-coming"><span class="coming-label">Publishing 19 May</span></div>
+      </div>
 
     </div>
   </section>
@@ -571,6 +547,7 @@
     <div>
       <span class="footer-col-title">Reports</span>
       <ul class="footer-links">
+        <li><a href="antifragile_africa_weekly_12may2026.html">Vol. 06 — 12 May 2026</a></li>
         <li><a href="antifragile_africa_weekly_06may2026.html">Vol. 05 — 06 May 2026</a></li>
         <li><a href="antifragile_africa_weekly_29apr2026.html">Vol. 04 — 29 Apr 2026</a></li>
         <li><a href="antifragile_africa_weekly_22apr2026.html">Vol. 03 — 22 Apr 2026</a></li>
@@ -591,10 +568,10 @@
       <span class="footer-col-title">Coverage</span>
       <ul class="footer-links">
         <li><a href="#">Nigeria · Lagos OTC</a></li>
+        <li><a href="#">WAEMU · CFA Bloc</a></li>
         <li><a href="#">Kenya · East Africa</a></li>
         <li><a href="#">South Africa · ZAR</a></li>
-        <li><a href="#">WAEMU · CFA Bloc</a></li>
-        <li><a href="#">Angola · Morocco</a></li>
+        <li><a href="#">Ethiopia · Angola</a></li>
       </ul>
     </div>
     <div>
@@ -608,8 +585,8 @@
   </div>
   <div class="footer-bottom">
     <span class="footer-copy">© 2026 Antifragile Africa Crypto · All Rights Reserved</span>
-    <div style="display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap; justify-content:flex-end;">
-      <div style="display:flex; gap:1.5rem;">
+    <div style="display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+      <div style="display:flex;gap:1.5rem;">
         <a href="terms.html" style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--steel)'" onmouseout="this.style.color='var(--mid)'">Terms</a>
         <a href="privacy.html" style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--steel)'" onmouseout="this.style.color='var(--mid)'">Privacy</a>
         <a href="disclaimer.html" style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--steel)'" onmouseout="this.style.color='var(--mid)'">Disclaimer</a>
