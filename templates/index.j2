@@ -1,1 +1,108 @@
 
+{# ── THESIS PILLARS ── #}
+<section class="ps">
+  <div class="s-ey">Core Framework</div>
+  <div class="s-t">Crypto in Africa is <em>Not Speculation</em></div>
+  <p class="s-sub">Four structural roles — enforced across every report, every week.</p>
+  <div class="pg">
+    <div class="pi">
+      <span class="pi-n">1</span><span class="pi-i">🛡️</span>
+      <div class="pi-t">FX Hedge</div>
+      <div class="pi-d">In markets where currency depreciation exceeds 18% annually, holding stablecoins is not speculation. It is rational treasury management.</div>
+    </div>
+    <div class="pi">
+      <span class="pi-n">2</span><span class="pi-i">🔥</span>
+      <div class="pi-t">Inflation Hedge</div>
+      <div class="pi-d">Every percentage point of inflation above 15% correlates with measurable stablecoin adoption growth. Disorder is the engine, not the barrier.</div>
+    </div>
+    <div class="pi">
+      <span class="pi-n">3</span><span class="pi-i">✈️</span>
+      <div class="pi-t">Capital Flight Rail</div>
+      <div class="pi-d">High-net-worth capital, SME trade flows, and diaspora remittances are all migrating to crypto rails — not for ideology, but for efficiency.</div>
+    </div>
+    <div class="pi">
+      <span class="pi-n">4</span><span class="pi-i">🏗️</span>
+      <div class="pi-t">Shadow Banking</div>
+      <div class="pi-d">The real African crypto market is informal, P2P, and invisible to Western analytics. This is not a bug. It is the entire story.</div>
+    </div>
+  </div>
+</section>
+
+{# ── NEWSLETTER ── #}
+<section class="ns">
+  <div class="ni">
+    <div>
+      <div class="s-ey">Stay Informed</div>
+      <div class="nt">Weekly intelligence<br><em>delivered direct</em></div>
+      <p class="nsub">Every week — institutional-grade analysis of African crypto capital flows, regulatory shifts, OTC signals, and asymmetric opportunities. No noise. No speculation theater. Intelligence that compounds.</p>
+    </div>
+    <div class="nf">
+      <span class="fn2">Subscribe to the weekly report</span>
+      <div class="nr">
+        <input type="email" placeholder="your@email.com">
+        <button type="button">Subscribe</button>
+      </div>
+      <p class="nd2">Institutional and professional allocators only. No financial advice. Simulated data where noted. Unsubscribe at any time.</p>
+    </div>
+  </div>
+</section>
+
+</div>{# /container #}
+
+{# ── FOOTER ── #}
+<footer>
+  <div class="fg">
+    <div class="fb2">
+      <span class="brand">Antifragile <em>Africa</em></span>
+      <p>Institutional intelligence on African crypto markets. Built on Thiel's secrets and Taleb's antifragility — for allocators who understand that disorder is the opportunity.</p>
+    </div>
+    <div>
+      <span class="fct">Reports</span>
+      <ul class="fl">
+        {% for issue in issues[:6] %}
+        <li><a href="{{ issue.meta.filename or '#' }}">Vol. {{ issue.meta.vol }} — {{ issue.meta.date }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div>
+      <span class="fct">Publication</span>
+      <ul class="fl">
+        <li><a href="about.html">About &amp; Thesis</a></li>
+        <li><a href="about.html#methodology">Methodology</a></li>
+        <li><a href="about.html#agents">Agent System</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="fct">Coverage</span>
+      <ul class="fl">
+        <li><a href="#">Nigeria · Lagos OTC</a></li>
+        <li><a href="#">Kenya · East Africa</a></li>
+        <li><a href="#">South Africa · ZAR</a></li>
+        <li><a href="#">WAEMU · CFA Bloc</a></li>
+        <li><a href="#">54 African States</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="fct">Legal</span>
+      <ul class="fl">
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="disclaimer.html">Disclaimer</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">
+    <span class="fc2">© 2026 Antifragile Africa Crypto · All Rights Reserved</span>
+    <div style="display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+      <div style="display:flex;gap:1.5rem;">
+        <a href="terms.html" style="font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;" onmouseover="this.style.color='var(--steel)'" onmouseout="this.style.color='var(--mid)'">Terms</a>
+        <a href="privacy.html" style="font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;" onmouseover="this.style.color='var(--steel)'" onmouseout="this.style.color='var(--mid)'">Privacy</a>
+        <a href="disclaimer.html" style="font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;" onmouseover="this.style.color='var(--steel)'" onmouseout="this.style.color='var(--mid)'">Disclaimer</a>
+      </div>
+      <span class="fd2">For institutional and professional use only. Not financial advice. Simulated data where noted. All figures are estimates or model outputs. Past signals do not guarantee future accuracy.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html
