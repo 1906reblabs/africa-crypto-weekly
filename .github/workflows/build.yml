@@ -1,1 +1,48 @@
+name: Build & Deploy ACIOS Reports
 
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "reports/**"
+      - "templates/**"
+      - "afi_parser.py"
+      - "build.py"
+      - "requirements.txt"
+  workflow_dispatch:   # allows manual trigger from GitHub Actions tab
+
+permissions:
+  contents: write    # needed to push to gh-pages branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Check out the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # 4. Build all reports + index
+      - name: Build HTML reports
+        run: python build.py all reports/
+
+      # 5. Deploy output/ to gh-pages branch
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: output          # the folder build.py writes to
+          branch: gh-pages        # GitHub Pages source branch
+          clean: true             # remove stale files from gh-pages
+          
