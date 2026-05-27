@@ -21,6 +21,7 @@ import re
 from pathlib import Path
 
 import jinja2
+from markupsafe import Markup
 import markdown2
 
 from afi_parser import parse_report, md, md_inline
@@ -43,11 +44,11 @@ env = jinja2.Environment(
 )
 
 # Register markdown filters so templates can use {{ text | md }} and {{ text | md_inline }}
-env.filters["md"]        = lambda t: jinja2.Markup(md(t or ""))
-env.filters["md_inline"] = lambda t: jinja2.Markup(md_inline(t or ""))
+env.filters["md"]        = lambda t: Markup(md(t or ""))
+env.filters["md_inline"] = lambda t: Markup(md_inline(t or ""))
 
 # Pass raw HTML through without double-escaping
-env.filters["safe"] = jinja2.Markup
+env.filters["safe"] = Markup
 
 
 def _title_html(title: str) -> str:
@@ -63,7 +64,7 @@ def _title_html(title: str) -> str:
     return title
 
 
-env.filters["title_html"] = lambda t: jinja2.Markup(_title_html(t or ""))
+env.filters["title_html"] = lambda t: Markup(_title_html(t or ""))
 
 
 # ── Render helper ─────────────────────────────────────────────────────────────
