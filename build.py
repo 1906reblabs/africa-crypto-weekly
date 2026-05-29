@@ -1,157 +1,296 @@
 #!/usr/bin/env python3
 """
-build.py — ACIOS build system
-Converts structured Markdown reports to HTML using Jinja2 templates.
+Robust ACIOS build system.
+
+Features:
+- Fail-fast validation with clear diagnostics
+- Deterministic report ordering
+- HTML generation verification
+- Safer template rendering
+- GitHub Actions friendly logging
+- Automatic output directory creation
+- Build summary at end of run
 
 Usage:
-  python build.py report <report.md>           # build one issue HTML
-  python build.py index  <reports_dir>         # build index from all .md files
-  python build.py all    <reports_dir>         # build every issue + index
-
-Output lands in ./output/ by default.  Set OUTPUT_DIR env var to override.
-
-GitHub Actions example:
-  - run: python build.py all reports/
-  - run: cp -r output/* docs/          # or deploy step
+  python build.py report reports/vol09.md
+  python build.py index reports/
+  python build.py all reports/
 """
 
+from __future__ import annotations
+
 import os
-import sys
 import re
+import sys
+import traceback
 from pathlib import Path
+from typing import Any
 
 import jinja2
 from markupsafe import Markup
-import markdown2
 
 from afi_parser import parse_report, md, md_inline
 
-# ── Paths ─────────────────────────────────────────────────────────────────────
+ROOT = Path(__file__).resolve().parent
+REPORTS_DIR = ROOT / "reports"
+TEMPLATE_DIR = ROOT / "templates"
+OUTPUT_DIR = Path(os.getenv("OUTPUT_DIR", ROOT / "output"))
 
-ROOT     = Path(__file__).parent
-TMPL_DIR = ROOT / "templates"
-OUT_DIR  = Path(os.getenv("OUTPUT_DIR", ROOT / "output"))
-OUT_DIR.mkdir(parents=True, exist_ok=True)
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# ── Jinja2 env ────────────────────────────────────────────────────────────────
+REQUIRED_TEMPLATES = ["issue.j2", "index.j2"]
+REQUIRED_META_FIELDS = [
+    "vol",
+    "date",
+    "filename",
+    "title",
+]
+
+
+def log(msg: str) -> None:
+    print(f"[ACIOS] {msg}")
+
+
+def fail(msg: str, code: int = 1) -> None:
+    print(f"[ACIOS:ERROR] {msg}", file=sys.stderr)
+    sys.exit(code)
+
+
+# -----------------------------------------------------------------------------
+# Validate environment
+# -----------------------------------------------------------------------------
+
+def validate_environment() -> None:
+    if not TEMPLATE_DIR.exists():
+        fail(f"Missing templates directory: {TEMPLATE_DIR}")
+
+    for tmpl in REQUIRED_TEMPLATES:
+        path = TEMPLATE_DIR / tmpl
+        if not path.exists():
+            fail(f"Missing template: {tmpl}")
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+
+# -----------------------------------------------------------------------------
+# Jinja
+# -----------------------------------------------------------------------------
 
 env = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(str(TMPL_DIR)),
-    autoescape=jinja2.select_autoescape(["html"]),
+    loader=jinja2.FileSystemLoader(str(TEMPLATE_DIR)),
+    autoescape=jinja2.select_autoescape(["html", "xml"]),
     trim_blocks=True,
     lstrip_blocks=True,
-    undefined=jinja2.Undefined,          # silently ignore missing vars
+    undefined=jinja2.StrictUndefined,
 )
 
-# Register markdown filters so templates can use {{ text | md }} and {{ text | md_inline }}
-env.filters["md"]        = lambda t: Markup(md(t or ""))
+env.filters["md"] = lambda t: Markup(md(t or ""))
 env.filters["md_inline"] = lambda t: Markup(md_inline(t or ""))
-
-# Pass raw HTML through without double-escaping
 env.filters["safe"] = Markup
 
 
-def _title_html(title: str) -> str:
-    """
-    Convert plain-text title with *italic* markers to HTML <em> tags.
-    Leaves existing <em>/<br> tags untouched.
-    """
+# -----------------------------------------------------------------------------
+# Helpers
+# -----------------------------------------------------------------------------
+
+def title_html(title: str) -> str:
     if not title:
         return ""
-    # Convert *text* → <em>text</em> only if not already HTML
+
     if "<em>" not in title:
         title = re.sub(r"\*(.+?)\*", r"<em>\1</em>", title)
+
     return title
 
 
-env.filters["title_html"] = lambda t: Markup(_title_html(t or ""))
+env.filters["title_html"] = lambda t: Markup(title_html(t or ""))
 
 
-# ── Render helper ─────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
+# Validation
+# -----------------------------------------------------------------------------
 
-def render(template_name: str, ctx: dict, out_name: str) -> Path:
-    tmpl = env.get_template(template_name)
-    html = tmpl.render(**ctx)
-    out  = OUT_DIR / out_name
-    out.write_text(html, encoding="utf-8")
-    print(f"✓  {out}")
-    return out
+def validate_report_data(data: dict[str, Any], source: Path) -> None:
+    meta = data.get("meta", {})
+
+    missing = [f for f in REQUIRED_META_FIELDS if not meta.get(f)]
+
+    if missing:
+        raise ValueError(
+            f"{source.name} missing frontmatter fields: {', '.join(missing)}"
+        )
+
+    filename = meta.get("filename", "")
+
+    if not filename.endswith(".html"):
+        raise ValueError(
+            f"{source.name} filename must end with .html"
+        )
 
 
-# ── Build modes ───────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
+# Rendering
+# -----------------------------------------------------------------------------
 
-def build_report(md_path: Path) -> dict:
-    """Parse one .md report and render it to HTML. Returns parsed data."""
-    data       = parse_report(md_path)
-    meta       = data.get("meta", {})
+def render(template_name: str, context: dict[str, Any], output_name: str) -> Path:
+    try:
+        template = env.get_template(template_name)
+    except Exception as exc:
+        fail(f"Unable to load template {template_name}: {exc}")
+
+    try:
+        html = template.render(**context)
+    except Exception:
+        traceback.print_exc()
+        fail(f"Template rendering failed for {output_name}")
+
+    output_path = OUTPUT_DIR / output_name
+
+    output_path.write_text(html, encoding="utf-8")
+
+    if not output_path.exists():
+        fail(f"HTML file was not written: {output_path}")
+
+    size = output_path.stat().st_size
+
+    if size < 100:
+        fail(f"Generated HTML suspiciously small: {output_name} ({size} bytes)")
+
+    log(f"Generated {output_name} ({size} bytes)")
+
+    return output_path
+
+
+# -----------------------------------------------------------------------------
+# Report discovery
+# -----------------------------------------------------------------------------
+
+def discover_reports(directory: Path) -> list[Path]:
+    if not directory.exists():
+        fail(f"Reports directory not found: {directory}")
+
+    reports = sorted(directory.glob("*.md"))
+
+    if not reports:
+        fail(f"No markdown reports found in {directory}")
+
+    log(f"Discovered {len(reports)} report(s)")
+
+    return reports
+
+
+# -----------------------------------------------------------------------------
+# Build one report
+# -----------------------------------------------------------------------------
+
+def build_report(report_path: Path) -> dict[str, Any]:
+    log(f"Parsing {report_path.name}")
+
+    try:
+        data = parse_report(report_path)
+    except Exception:
+        traceback.print_exc()
+        fail(f"Failed parsing report: {report_path.name}")
+
+    validate_report_data(data, report_path)
+
+    meta = data.get("meta", {})
     components = data.get("components", {})
-    filename   = meta.get("filename", md_path.stem + ".html")
 
-    render("issue.j2", dict(meta=meta, c=components), filename)
+    output_name = meta.get("filename")
+
+    render(
+        "issue.j2",
+        {
+            "meta": meta,
+            "c": components,
+        },
+        output_name,
+    )
+
     return data
 
 
-def _collect_reports(reports_dir: Path) -> list[dict]:
-    """
-    Load all .md files from reports_dir, sorted newest-first by vol number
-    (falls back to filename sort).
-    """
-    md_files = sorted(reports_dir.glob("*.md"), reverse=True)
-    issues = []
-    for f in md_files:
-        try:
-            data = parse_report(f)
-            issues.append(data)
-        except Exception as exc:
-            print(f"[build] Warning: skipping {f.name}: {exc}", file=sys.stderr)
-    return issues
+# -----------------------------------------------------------------------------
+# Build index
+# -----------------------------------------------------------------------------
+
+def build_index(issues: list[dict[str, Any]]) -> None:
+    latest = issues[-1] if issues else {}
+
+    render(
+        "index.j2",
+        {
+            "issues": list(reversed(issues)),
+            "latest": latest,
+        },
+        "index.html",
+    )
 
 
-def build_index(reports_dir: Path) -> None:
-    """Render index.html from all .md files in reports_dir."""
-    issues = _collect_reports(reports_dir)
-    latest = issues[0] if issues else {}
-    render("index.j2", dict(issues=issues, latest=latest), "index.html")
-
+# -----------------------------------------------------------------------------
+# Build all
+# -----------------------------------------------------------------------------
 
 def build_all(reports_dir: Path) -> None:
-    """Build every issue HTML + the index."""
-    md_files = sorted(reports_dir.glob("*.md"), reverse=True)
-    issues   = []
-    for f in md_files:
+    reports = discover_reports(reports_dir)
+
+    built: list[dict[str, Any]] = []
+
+    for report in reports:
         try:
-            data = build_report(f)
-            issues.append(data)
-        except Exception as exc:
-            print(f"[build] Warning: {f.name}: {exc}", file=sys.stderr)
-    latest = issues[0] if issues else {}
-    render("index.j2", dict(issues=issues, latest=latest), "index.html")
+            built.append(build_report(report))
+        except Exception:
+            traceback.print_exc()
+            fail(f"Build aborted on {report.name}")
+
+    build_index(built)
+
+    generated = sorted(OUTPUT_DIR.glob("*.html"))
+
+    if not generated:
+        fail("Build completed but no HTML files were generated")
+
+    log("Build successful")
+    log(f"Generated {len(generated)} HTML file(s)")
+
+    for html in generated:
+        log(f" - {html.name}")
 
 
-# ── CLI entry point ───────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
+# CLI
+# -----------------------------------------------------------------------------
 
-if __name__ == "__main__":
+def main() -> None:
+    validate_environment()
+
     if len(sys.argv) < 3:
         print(__doc__)
         sys.exit(1)
 
-    mode   = sys.argv[1].lower()
+    mode = sys.argv[1].strip().lower()
     target = Path(sys.argv[2])
 
     if mode == "report":
-        if not target.is_file():
-            sys.exit(f"File not found: {target}")
+        if not target.exists():
+            fail(f"Report file not found: {target}")
+
         build_report(target)
+        return
 
-    elif mode == "index":
-        if not target.is_dir():
-            sys.exit(f"Directory not found: {target}")
-        build_index(target)
+    if mode == "index":
+        reports = discover_reports(target)
+        issues = [parse_report(r) for r in reports]
+        build_index(issues)
+        return
 
-    elif mode == "all":
-        if not target.is_dir():
-            sys.exit(f"Directory not found: {target}")
+    if mode == "all":
         build_all(target)
+        return
 
-    else:
-        sys.exit(f"Unknown mode '{mode}'. Use: report | index | all")
+    fail(f"Unknown mode: {mode}")
+
+
+if __name__ == "__main__":
+    main()
